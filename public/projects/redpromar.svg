@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="seaBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#062b3a" />
+      <stop offset="55%" stop-color="#054a5e" />
+      <stop offset="100%" stop-color="#037377" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#seaBg)" />
+  <g fill="none" stroke="#8fe3dd" stroke-opacity="0.45" stroke-width="3">
+    <path d="M -20 340 Q 80 310 180 340 T 380 340 T 580 340 T 780 340 T 980 340" />
+    <path d="M -20 390 Q 80 360 180 390 T 380 390 T 580 390 T 780 390 T 980 390" stroke-opacity="0.3" />
+    <path d="M -20 440 Q 80 415 180 440 T 380 440 T 580 440 T 780 440 T 980 440" stroke-opacity="0.2" />
+  </g>
+  <circle cx="620" cy="110" r="10" fill="#eafffb" opacity="0.85" />
+  <circle cx="660" cy="150" r="5" fill="#eafffb" opacity="0.6" />
+  <path d="M 150 150 C 190 120 250 120 280 155 C 300 178 285 205 255 205 C 225 205 195 190 175 175 C 160 163 145 165 150 150 Z" fill="#eafffb" opacity="0.9" />
+  <circle cx="270" cy="165" r="4" fill="#054a5e" />
+  <text x="400" y="235" text-anchor="middle" font-family="Space Grotesk, Arial, sans-serif" font-size="48" font-weight="700" fill="#eafffb" letter-spacing="1">RedPROMAR</text>
+  <text x="400" y="270" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#bdf3ec" letter-spacing="0.5">MARINE HABITAT OBSERVATION NETWORK</text>
+  <text x="400" y="296" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#8fd8ce" letter-spacing="0.5">Gobierno de Canarias · Citizen Science</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="ntBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1b2a" />
+      <stop offset="55%" stop-color="#16324a" />
+      <stop offset="100%" stop-color="#1f4a63" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#ntBg)" />
+  <g fill="#3a6c8a" opacity="0.55">
+    <polygon points="-20,380 120,220 220,320 340,160 460,340 560,240 700,380" />
+  </g>
+  <g fill="#5a93b0" opacity="0.6">
+    <polygon points="-20,420 160,300 280,390 420,260 540,400 680,300 820,420" />
+  </g>
+  <line x1="0" y1="420" x2="800" y2="420" stroke="#eaf6fb" stroke-opacity="0.25" stroke-width="2" />
+  <text x="400" y="230" text-anchor="middle" font-family="Space Grotesk, Arial, sans-serif" font-size="46" font-weight="700" fill="#eaf6fb" letter-spacing="1">Norwegian Technology</text>
+  <text x="400" y="266" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#a9d3e6" letter-spacing="0.5">COMPANY PAGE &amp; WEBSITE PLATFORM</text>
+</svg>
