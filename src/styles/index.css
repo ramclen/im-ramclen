@@ -1,0 +1,807 @@
+@import 'tailwindcss';
+
+/* Theme is driven by the .dark class (set from the OS preference or the toggle) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-muted-foreground: hsl(var(--foreground) / 0.74);
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
+  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
+  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+  --animate-meteor: meteor 12s linear infinite;
+  --animate-flame: flame-flicker 0.18s ease-in-out infinite alternate;
+  --animate-smoke: smoke-trail 1.6s ease-out infinite;
+  --animate-glow-breathe: glow-breathe 7s ease-in-out infinite;
+  --animate-pop-in: pop-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-icon-in: icon-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Stars keep their own base brightness via --star-opacity */
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: var(--star-opacity, 1);
+      transform: scale(1);
+    }
+    50% {
+      opacity: calc(var(--star-opacity, 1) * 0.3);
+      transform: scale(0.75);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* Streak lives in the first ~15% of the cycle, the rest is idle sky */
+  @keyframes meteor {
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 0;
+    }
+    2% {
+      opacity: 1;
+    }
+    12% {
+      opacity: 1;
+    }
+    16%,
+    100% {
+      transform: rotate(215deg) translateX(-600px);
+      opacity: 0;
+    }
+  }
+
+  /* Scale only: opacity is owned by the theme cross-fade */
+  @keyframes glow-breathe {
+    0%,
+    100% {
+      scale: 1;
+    }
+    50% {
+      scale: 1.15;
+    }
+  }
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      translate: 0 12px;
+      scale: 0.96;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+    }
+  }
+
+  @keyframes icon-in {
+    from {
+      opacity: 0;
+      transform: rotate(-120deg) scale(0.4);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      translate: 0 32px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes flame-flicker {
+    0% {
+      transform: scaleY(0.9) scaleX(1.05);
+      opacity: 0.85;
+    }
+    100% {
+      transform: scaleY(1.3) scaleX(0.88);
+      opacity: 1;
+    }
+  }
+
+  /* The rocket climbs, so its smoke falls behind and spreads out */
+  @keyframes smoke-trail {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(40px) translateX(var(--drift, 0px)) scale(2.2);
+      opacity: 0;
+    }
+  }
+
+  /* Astronauts: low-gravity hop while walking, fieldwork while idle */
+  @keyframes astro-stride {
+    from {
+      transform: rotate(24deg);
+    }
+    to {
+      transform: rotate(-24deg);
+    }
+  }
+
+  @keyframes astro-arm-swing {
+    from {
+      transform: rotate(-18deg);
+    }
+    to {
+      transform: rotate(18deg);
+    }
+  }
+
+  @keyframes astro-hop {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes astro-shadow {
+    0%,
+    100% {
+      transform: scaleX(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: scaleX(0.75);
+      opacity: 0.18;
+    }
+  }
+
+  @keyframes astro-breathe {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.8px);
+    }
+  }
+
+  /* Scientist: raise the scanner, then sweep it slowly over the ground */
+  @keyframes astro-raise {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(-30deg);
+    }
+  }
+
+  @keyframes astro-scan {
+    0%,
+    100% {
+      transform: rotate(-30deg);
+    }
+    50% {
+      transform: rotate(-40deg);
+    }
+  }
+
+  @keyframes astro-inspect {
+    to {
+      transform: rotate(9deg);
+    }
+  }
+
+  @keyframes astro-beam {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes astro-screen {
+    0%,
+    45%,
+    100% {
+      opacity: 1;
+    }
+    50%,
+    55% {
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes rover-wheel {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rover-bump {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-1.2px);
+    }
+    60% {
+      transform: translateY(0.6px);
+    }
+  }
+
+  @keyframes rover-pan {
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+    20%,
+    35% {
+      transform: rotate(-14deg);
+    }
+    55%,
+    75% {
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes rover-dish {
+    0%,
+    100% {
+      transform: rotate(-12deg);
+    }
+    50% {
+      transform: rotate(12deg);
+    }
+  }
+
+  @keyframes station-spin {
+    from {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(-1);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes astro-look {
+    0%,
+    40%,
+    100% {
+      transform: rotate(0);
+    }
+    46%,
+    60% {
+      transform: rotate(-8deg);
+    }
+    66%,
+    80% {
+      transform: rotate(6deg);
+    }
+  }
+
+  @keyframes astro-dust {
+    0% {
+      transform: translate(0, 0) scale(0.4);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate(-9px, -5px) scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  @keyframes beacon {
+    0%,
+    70%,
+    100% {
+      opacity: 0.25;
+    }
+    78% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes visor-glint {
+    0%,
+    80% {
+      transform: translateX(-14px);
+      opacity: 0;
+    }
+    86% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateX(14px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes theme-nudge {
+    0%,
+    84%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    88% {
+      transform: translateY(-3px) scale(1.03);
+    }
+    92% {
+      transform: translateY(0) scale(1);
+    }
+    96% {
+      transform: translateY(-2px) scale(1.02);
+    }
+  }
+}
+
+/* Outside @theme: clouds reference these from inline styles, which
+   Tailwind can't see, so they must always be emitted */
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(-20vw);
+  }
+  100% {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes cloud-bob {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 28 55% 95%;
+    --foreground: 20 40% 12%;
+
+    --card: 30 45% 98%;
+
+    --primary: 195 85% 35%;
+    --primary-foreground: 200 40% 97%;
+
+    --border: 25 35% 85%;
+  }
+
+  .dark {
+    --background: 350 40% 5%;
+    --foreground: 30 25% 92%;
+
+    --card: 350 30% 9%;
+
+    --primary: 190 85% 58%;
+    --primary-foreground: 210 45% 10%;
+
+    --border: 350 20% 18%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+    /* Keeps anchored section headings clear of the fixed navbar */
+    scroll-padding-top: 6rem;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid hsl(var(--primary));
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-700;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-grotesk;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  span,
+  li,
+  button {
+    transition-property:
+      color, background-color, border-color, text-decoration-color, fill,
+      stroke, box-shadow;
+    transition-duration: 700ms;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >= 640px) {
+    max-width: 640px;
+  }
+
+  @media (width >= 768px) {
+    max-width: 768px;
+  }
+
+  @media (width >= 1024px) {
+    max-width: 1024px;
+  }
+
+  @media (width >= 1280px) {
+    max-width: 1280px;
+  }
+
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@utility card-hover {
+  border: 1px solid transparent;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background-color 0.7s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.45);
+    box-shadow:
+      0 12px 28px -12px rgb(0 0 0 / 0.35),
+      0 0 0 1px hsl(var(--primary) / 0.15),
+      0 0 24px -6px hsl(var(--primary) / 0.35);
+  }
+}
+
+@utility brand-button {
+  @apply font-grotesk px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:scale-105 active:scale-95;
+  /* Light sheen that sweeps across on hover */
+  background-image: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.35) 50%,
+    transparent 60%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  background-position: 130% 0;
+  transition:
+    all 0.3s,
+    background-position 0.8s ease;
+
+  &:hover {
+    background-position: -30% 0;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  }
+}
+
+/* Opaque on purpose so the animated scene never shows through text */
+@utility panel {
+  @apply rounded-2xl border border-border/60 bg-card shadow-lg;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    95deg,
+    hsl(var(--primary)) 10%,
+    color-mix(in oklab, hsl(var(--primary)) 60%, hsl(var(--foreground)))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility skip-link {
+  @apply fixed left-3 -top-16 z-[100] rounded-lg bg-card px-4 py-3 font-semibold text-foreground shadow-lg;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 0.75rem;
+  }
+}
+
+@utility eyebrow {
+  @apply font-grotesk text-xs font-semibold uppercase tracking-[0.2em] text-primary;
+}
+
+@utility btn-secondary {
+  @apply font-grotesk inline-flex items-center justify-center gap-2 px-6 py-2 rounded-full border border-primary text-primary font-medium bg-background/40 hover:bg-primary/10 active:scale-95 transition-all duration-300;
+}
+
+@utility nav-link {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    border-radius: 9999px;
+    background: hsl(var(--primary));
+    scale: 0 1;
+    transform-origin: right;
+    transition: scale 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover::after {
+    scale: 1 1;
+    transform-origin: left;
+  }
+}
+
+/* Scroll-driven entrance; browsers without view timelines just show content */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@utility font-grotesk {
+  font-family:
+    'Space Grotesk', 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@utility star {
+  @apply absolute rounded-full bg-white;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+}
+
+@utility meteor {
+  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
+  box-shadow: 10px 0 12px -2px rgba(255, 255, 255, 0.35);
+  opacity: 0;
+}
+
+@utility cloud {
+  @apply absolute rounded-full;
+  background: rgba(224, 178, 128, 0.55);
+  filter: blur(1.2px);
+  box-shadow:
+    30px -16px 0 10px rgba(224, 178, 128, 0.5),
+    58px -18px 0 18px rgba(224, 178, 128, 0.52),
+    86px -10px 0 14px rgba(224, 178, 128, 0.5),
+    114px 0 0 6px rgba(224, 178, 128, 0.42);
+}
+
+/* Walking state is toggled by useWander via data-moving / data-facing */
+@utility astronaut {
+  & .astro-flip {
+    transition: transform 0.25s ease-in-out;
+  }
+
+  &[data-facing='left'] .astro-flip {
+    transform: scaleX(-1);
+  }
+
+  & .astro-figure {
+    animation: astro-breathe 3.2s ease-in-out infinite;
+  }
+
+  & .astro-head {
+    animation: astro-look 9s ease-in-out infinite;
+    animation-delay: var(--astro-delay, 0s);
+  }
+
+  & .astro-dust {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  & .astro-beacon {
+    animation: beacon 1.6s linear infinite;
+  }
+
+  & .astro-glint {
+    animation: visor-glint 7s ease-in-out infinite;
+    animation-delay: var(--astro-delay, 0s);
+  }
+
+  & .astro-beam {
+    opacity: 0;
+  }
+
+  & .astro-screen {
+    animation: astro-screen 1.4s steps(1) infinite;
+  }
+
+  &[data-role='scientist'] {
+    & .astro-front-arm {
+      animation:
+        astro-raise 0.6s ease-out forwards,
+        astro-scan 3.2s ease-in-out 0.6s infinite;
+    }
+
+    & .astro-head {
+      animation: astro-inspect 0.6s ease-out forwards;
+    }
+
+    & .astro-beam {
+      animation: astro-beam 1.6s ease-in-out 0.6s infinite backwards;
+    }
+  }
+
+  &[data-moving='true'] {
+    & .astro-figure {
+      animation: astro-hop 0.45s ease-in-out infinite;
+    }
+
+    & .astro-shadow {
+      animation: astro-shadow 0.45s ease-in-out infinite;
+    }
+
+    & .astro-head,
+    & .astro-beam {
+      animation: none;
+    }
+
+    & .astro-back-leg {
+      animation: astro-stride 0.45s ease-in-out infinite alternate;
+    }
+
+    & .astro-front-leg {
+      animation: astro-stride 0.45s ease-in-out infinite alternate-reverse;
+    }
+
+    & .astro-front-arm {
+      animation: astro-arm-swing 0.45s ease-in-out infinite alternate;
+    }
+
+    & .astro-back-arm {
+      animation: astro-arm-swing 0.45s ease-in-out infinite alternate-reverse;
+    }
+
+    & .astro-dust {
+      animation: astro-dust 0.9s ease-out infinite;
+    }
+  }
+}
+
+/* Same data-moving / data-facing contract as the astronauts */
+@utility rover {
+  & .rover-flip {
+    transition: transform 0.4s ease-in-out;
+  }
+
+  &[data-facing='left'] .rover-flip {
+    transform: scaleX(-1);
+  }
+
+  & .rover-wheel {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: rover-wheel 1.4s linear infinite paused;
+  }
+
+  & .rover-head {
+    animation: rover-pan 8s ease-in-out infinite;
+  }
+
+  & .rover-dish {
+    animation: rover-dish 5s ease-in-out infinite;
+  }
+
+  & .rover-dust {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  & .astro-beacon {
+    animation: beacon 1.6s linear infinite;
+  }
+
+  &[data-moving='true'] {
+    & .rover-wheel {
+      animation-play-state: running;
+    }
+
+    & .rover-body {
+      animation: rover-bump 0.7s ease-in-out infinite;
+    }
+
+    & .rover-head {
+      animation: none;
+    }
+
+    & .rover-dust {
+      animation: astro-dust 1s ease-out infinite;
+    }
+  }
+}
+
+@utility station-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: station-spin 0.9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
