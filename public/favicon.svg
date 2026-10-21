@@ -10,9 +10,11 @@
     }
   </style>
   <rect class="box" x="2" y="2" width="60" height="60" rx="15" stroke-width="3" />
-  <g class="letters" fill="none" stroke-width="5.5">
-    <path d="M25.7 25.3 A9.5 9.5 0 1 0 25.7 38.7" />
-    <path d="M42 19.5 V41.5 H55" stroke-linejoin="miter" />
+  <g transform="translate(32 32) scale(0.92) translate(-32 -32)">
+    <g class="letters" fill="none" stroke-width="5.5">
+      <path d="M24.92 25.28 A9.5 9.5 0 1 0 24.92 38.72" />
+      <path d="M45.05 19.5 V41.5 H58.05" stroke-linejoin="miter" />
+    </g>
+    <path class="slash" d="M34.8 20 L32.2 44" stroke-width="3" stroke-linecap="round" />
   </g>
-  <path class="slash" d="M36 19 L31 45" stroke-width="3" stroke-linecap="round" />
 </svg>
