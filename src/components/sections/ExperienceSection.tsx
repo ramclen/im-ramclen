@@ -2,12 +2,12 @@ import { ArrowUpRight, CircleCheck } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { SectionHeading } from '@/components/common/SectionHeading'
 
-interface Project {
+interface Company {
   name: string
   sector: string
   role?: string
   /** Client project, when the work was done for someone else */
-  project?: string
+  clientProject?: string
   current?: boolean
   highlights: string[]
   image: string
@@ -16,7 +16,7 @@ interface Project {
 }
 
 // Current role gets the big card; the rest share the grid below
-const featured: Project = {
+const currentRole: Company = {
   name: 'Yoti',
   sector: 'Digital identity',
   role: 'Senior Frontend Engineer',
@@ -31,7 +31,7 @@ const featured: Project = {
   tags: ['React', 'TypeScript', 'Redux', 'PWA', 'MCP']
 }
 
-const projects: Project[] = [
+const pastRoles: Company[] = [
   {
     name: 'Flix by Foundry',
     sector: 'Film & VFX software',
@@ -57,7 +57,7 @@ const projects: Project[] = [
   {
     name: 'Singular Factory',
     sector: 'Public sector',
-    project: 'RedPROMAR',
+    clientProject: 'RedPROMAR',
     highlights: [
       'Built the back office, REST API and public site for RedPROMAR end to end.',
       'Citizen-science platform for the Government of the Canary Islands that tracks marine wildlife sightings.'
@@ -99,24 +99,24 @@ const Tags = ({ tags }: { tags: string[] }) => (
   </ul>
 )
 
-const VisitLink = ({ project }: { project: Project }) =>
-  project.url ? (
+const VisitLink = ({ company }: { company: Company }) =>
+  company.url ? (
     <a
-      href={project.url}
+      href={company.url}
       target="_blank"
       rel="noreferrer"
       className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold font-grotesk text-primary hover:gap-2.5 transition-all duration-300"
     >
       Visit website
       <ArrowUpRight className="size-4" />
-      <span className="sr-only">(opens {project.name} in a new tab)</span>
+      <span className="sr-only">(opens {company.name} in a new tab)</span>
     </a>
   ) : null
 
-const Meta = ({ project }: { project: Project }) => (
+const Meta = ({ company }: { company: Company }) => (
   <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-2">
-    <p className="eyebrow">{project.sector}</p>
-    {project.current && (
+    <p className="eyebrow">{company.sector}</p>
+    {company.current && (
       <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 border border-primary/30 px-2.5 py-0.5 text-xs font-semibold text-primary">
         <span className="relative flex size-2">
           <span className="absolute inline-flex size-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
@@ -140,47 +140,47 @@ export const ExperienceSection = () => {
           id="experience-title"
           index="01"
           label="Professional experience"
-          title="Products I’ve helped ship."
-          subtitle="Teams I’ve helped grow."
-          description="My work inside companies: solving real product challenges, delivering production software and supporting engineering teams."
+          title="Where I’ve worked."
+          subtitle="And what I shipped there."
+          description="The companies and teams I’ve built production software with, most recent first."
         />
 
         <article className="reveal group panel card-hover overflow-hidden grid md:grid-cols-5 mb-8">
           {/* Backdrop matches the logo artwork so object-contain shows the full mark */}
           <div className="relative md:col-span-2 h-56 md:h-auto overflow-hidden bg-[#323a43]">
             <img
-              src={featured.image}
-              alt={`${featured.name} preview`}
+              src={currentRole.image}
+              alt={`${currentRole.name} preview`}
               className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
 
           <div className="md:col-span-3 flex flex-col gap-5 p-6 md:p-10 border-t-4 md:border-t-0 md:border-l-4 border-primary">
             <div>
-              <Meta project={featured} />
+              <Meta company={currentRole} />
               <h3 className="text-3xl font-bold tracking-tight">
-                {featured.name}
+                {currentRole.name}
               </h3>
               <p className="font-medium text-foreground/80 mt-1">
-                {featured.role}
+                {currentRole.role}
               </p>
             </div>
-            <Highlights items={featured.highlights} large />
-            <Tags tags={featured.tags} />
-            <VisitLink project={featured} />
+            <Highlights items={currentRole.highlights} large />
+            <Tags tags={currentRole.tags} />
+            <VisitLink company={currentRole} />
           </div>
         </article>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {pastRoles.map((company) => (
             <article
-              key={project.name}
+              key={company.name}
               className="reveal group panel card-hover flex flex-col overflow-hidden"
             >
               <div className="h-40 overflow-hidden">
                 <img
-                  src={project.image}
-                  alt={`${project.project ?? project.name} preview`}
+                  src={company.image}
+                  alt={`${company.clientProject ?? company.name} preview`}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
@@ -188,23 +188,23 @@ export const ExperienceSection = () => {
 
               <div className="flex flex-1 flex-col gap-4 p-6">
                 <div>
-                  <Meta project={project} />
-                  <h3 className="text-xl font-semibold">{project.name}</h3>
-                  {project.role && (
+                  <Meta company={company} />
+                  <h3 className="text-xl font-semibold">{company.name}</h3>
+                  {company.role && (
                     <p className="text-sm font-medium text-foreground/80 mt-0.5">
-                      {project.role}
+                      {company.role}
                     </p>
                   )}
-                  {project.project && (
+                  {company.clientProject && (
                     <p className="text-sm font-medium text-foreground/80 mt-0.5">
-                      Project: {project.project}
+                      Project: {company.clientProject}
                     </p>
                   )}
                 </div>
-                <Highlights items={project.highlights} />
+                <Highlights items={company.highlights} />
                 <div className="mt-auto space-y-4 pt-1">
-                  <Tags tags={project.tags} />
-                  <VisitLink project={project} />
+                  <Tags tags={company.tags} />
+                  <VisitLink company={company} />
                 </div>
               </div>
             </article>

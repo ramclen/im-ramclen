@@ -57,8 +57,7 @@ export const ExpertiseSection = () => {
               id="expertise-title"
               className="mt-3 mb-5 text-3xl font-bold leading-[1.12] tracking-[-0.04em] md:text-5xl"
             >
-              The tools matter.{' '}
-              <span className="text-gradient">The decisions matter more.</span>
+              What I bring <span className="text-gradient">to a team.</span>
             </h2>
             <p className="max-w-sm leading-relaxed text-muted-foreground">
               I combine hands-on implementation with architecture, quality and

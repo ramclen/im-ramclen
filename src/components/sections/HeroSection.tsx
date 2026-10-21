@@ -1,4 +1,5 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Download } from 'lucide-react'
+import cvPdf from '@/assets/Cristopher-Lopez-CV.pdf'
 
 const focusAreas = [
   'Frontend architecture',
@@ -84,12 +85,22 @@ export const HeroSection = () => {
             <div className="mt-8 flex flex-col sm:flex-row gap-3 opacity-0 animate-fade-in-delay-3">
               <a
                 href="#experience"
-                className="brand-button inline-flex items-center justify-center gap-2"
+                className="brand-button inline-flex items-center justify-center gap-2 whitespace-nowrap"
               >
-                Explore my experience <ArrowUpRight className="size-4" />
+                View experience <ArrowUpRight className="size-4" />
               </a>
-              <a href="#github-projects" className="btn-secondary">
-                See GitHub projects <ArrowUpRight className="size-4" />
+              <a
+                href="#github-projects"
+                className="btn-secondary whitespace-nowrap"
+              >
+                GitHub projects <ArrowUpRight className="size-4" />
+              </a>
+              <a
+                href={cvPdf}
+                download
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap px-2 py-2 font-grotesk font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                <Download className="size-4" /> CV
               </a>
             </div>
 

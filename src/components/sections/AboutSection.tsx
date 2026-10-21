@@ -16,7 +16,7 @@ export const AboutSection = () => {
               id="about-title"
               className="mt-3 text-3xl font-bold leading-[1.12] tracking-[-0.04em] md:text-4xl"
             >
-              A builder and a team player.
+              Twelve years in, still enjoying the craft.
             </h2>
           </div>
           <div className="space-y-4">

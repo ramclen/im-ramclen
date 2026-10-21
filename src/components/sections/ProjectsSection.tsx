@@ -77,9 +77,9 @@ export const ProjectsSection = () => {
           id="projects-title"
           index="02"
           label="GitHub projects"
-          title="Beyond the day job."
-          subtitle="Code you can explore."
-          description="Personal repositories, separate from my company experience. Independent builds where I experiment with frontend ideas and developer tooling."
+          title="Side projects."
+          subtitle="Things I build for myself."
+          description="Personal repositories, separate from my work above. Where I try out frontend ideas and small developer tools."
         />
 
         <div className="grid gap-6 md:grid-cols-2">

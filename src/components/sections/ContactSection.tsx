@@ -37,9 +37,9 @@ export const ContactSection = () => {
               id="contact-title"
               className="mt-4 mb-6 text-4xl font-extrabold leading-[1.05] tracking-[-0.05em] md:text-6xl"
             >
-              Let&rsquo;s build
+              Let&rsquo;s work
               <br />
-              <span className="text-gradient">something better.</span>
+              <span className="text-gradient">together.</span>
             </h2>
             <p className="mb-8 max-w-lg leading-relaxed text-muted-foreground">
               Hiring a senior frontend engineer? Want to talk architecture,
