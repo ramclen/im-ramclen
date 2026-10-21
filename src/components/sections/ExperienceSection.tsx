@@ -6,6 +6,8 @@ interface Project {
   name: string
   sector: string
   role?: string
+  /** Client project, when the work was done for someone else */
+  project?: string
   current?: boolean
   highlights: string[]
   image: string
@@ -53,10 +55,11 @@ const projects: Project[] = [
     tags: ['React', 'AngularJS', 'Angular Material', 'Bootstrap']
   },
   {
-    name: 'RedPROMAR',
+    name: 'Singular Factory',
     sector: 'Public sector',
+    project: 'RedPROMAR',
     highlights: [
-      'Built the back office, REST API and public site end to end.',
+      'Built the back office, REST API and public site for RedPROMAR end to end.',
       'Citizen-science platform for the Government of the Canary Islands that tracks marine wildlife sightings.'
     ],
     image: 'projects/redpromar.svg',
@@ -177,7 +180,7 @@ export const ExperienceSection = () => {
               <div className="h-40 overflow-hidden">
                 <img
                   src={project.image}
-                  alt={`${project.name} preview`}
+                  alt={`${project.project ?? project.name} preview`}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
@@ -190,6 +193,11 @@ export const ExperienceSection = () => {
                   {project.role && (
                     <p className="text-sm font-medium text-foreground/80 mt-0.5">
                       {project.role}
+                    </p>
+                  )}
+                  {project.project && (
+                    <p className="text-sm font-medium text-foreground/80 mt-0.5">
+                      Project: {project.project}
                     </p>
                   )}
                 </div>
