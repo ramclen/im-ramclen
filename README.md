@@ -46,6 +46,31 @@ src/
   styles/       # Tailwind theme, keyframes and custom utilities
 ```
 
+## Adding a project
+
+GitHub projects live in [`src/data/projects.json`](src/data/projects.json).
+Add an entry and it shows up on the page, no component changes needed. The
+file has a JSON schema, so VS Code autocompletes the fields.
+
+```json
+{
+  "name": "MyProject",
+  "category": "Frontend · React",
+  "description": "What it does and why it's interesting, in a sentence or two.",
+  "tags": ["React", "TypeScript"],
+  "repo": "https://github.com/ramclen/MyProject",
+  "demo": "https://my-project.example.com",
+  "image": "projects/my-project.png",
+  "illustration": "code",
+  "palette": "cool"
+}
+```
+
+Only `name`, `category`, `description`, `tags` and `repo` are required.
+`image` is a screenshot in `public/`; without one the card uses a drawn
+illustration (`phone`, `network` or `code`). A malformed entry is skipped with
+a console warning in dev instead of breaking the page.
+
 ## Deploying
 
 `npm run deploy` publishes to the `gh-pages` branch. The `public/CNAME` file

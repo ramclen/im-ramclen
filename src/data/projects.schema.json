@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Portfolio projects",
+  "type": "object",
+  "required": ["projects"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "category", "description", "tags", "repo"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Project name shown as the card title"
+          },
+          "category": {
+            "type": "string",
+            "description": "Short label above the title, e.g. \"Frontend · Progressive Web App\""
+          },
+          "description": {
+            "type": "string",
+            "description": "One or two sentences on what it does and why it's interesting"
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Main technologies, keep it to three or four"
+          },
+          "repo": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to the source code"
+          },
+          "demo": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional live demo, adds a \"Live demo\" link"
+          },
+          "image": {
+            "type": "string",
+            "description": "Optional screenshot path relative to /public, e.g. \"projects/my-app.png\". Takes priority over the illustration"
+          },
+          "illustration": {
+            "enum": ["phone", "network", "code"],
+            "default": "code",
+            "description": "Drawn artwork used when there is no screenshot"
+          },
+          "palette": {
+            "enum": ["warm", "cool"],
+            "default": "cool",
+            "description": "Background colour for the artwork"
+          }
+        }
+      }
+    }
+  }
+}

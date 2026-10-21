@@ -1,0 +1,23 @@
+{
+  "$schema": "./projects.schema.json",
+  "projects": [
+    {
+      "name": "ShoppingCart",
+      "category": "Frontend · Progressive Web App",
+      "description": "A React/Redux PWA for managing shopping lists backed by Google Sheets, designed to work across desktop and mobile.",
+      "tags": ["React", "Redux", "PWA"],
+      "repo": "https://github.com/ramclen/ShoppingCart",
+      "illustration": "phone",
+      "palette": "warm"
+    },
+    {
+      "name": "DiscoverProtocol",
+      "category": "Developer tooling · TypeScript",
+      "description": "A TypeScript package for discovering service information at unknown server locations, usable on both client and server.",
+      "tags": ["TypeScript", "Node.js", "Networking"],
+      "repo": "https://github.com/ramclen/DiscoverProtocol",
+      "illustration": "network",
+      "palette": "cool"
+    }
+  ]
+}
