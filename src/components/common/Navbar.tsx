@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { LogoMark } from '@/components/common/LogoMark'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
 
 interface NavItem {
@@ -61,11 +62,9 @@ export const Navbar = () => {
           >
             <span
               aria-hidden="true"
-              className="flex size-10 items-center justify-center gap-[1px] rounded-xl border border-primary/40 bg-card font-grotesk text-[15px] font-bold leading-none text-foreground shadow-sm"
+              className="flex size-10 items-center justify-center rounded-xl border border-primary/40 bg-card text-foreground shadow-sm"
             >
-              <span>C</span>
-              <span className="font-normal text-primary">/</span>
-              <span>L</span>
+              <LogoMark className="w-7" />
             </span>
             <span className="grid leading-tight">
               <b className="font-grotesk text-sm text-foreground">
