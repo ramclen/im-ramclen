@@ -1,5 +1,12 @@
 import { useEffect, useRef, type CSSProperties } from 'react'
 
+const smokePuffs = [
+  { size: 'h-2 w-2', tone: 'bg-white/45', delay: '0s', drift: '-6px' },
+  { size: 'h-2.5 w-2.5', tone: 'bg-white/35', delay: '0.4s', drift: '5px' },
+  { size: 'h-3 w-3', tone: 'bg-white/25', delay: '0.8s', drift: '-3px' },
+  { size: 'h-2.5 w-2.5', tone: 'bg-white/30', delay: '1.2s', drift: '7px' }
+]
+
 export const RocketLaunch = () => {
   const rocketRef = useRef<HTMLDivElement>(null)
   const exhaustRef = useRef<HTMLDivElement>(null)
@@ -99,32 +106,7 @@ export const RocketLaunch = () => {
             />
           </div>
           <div className="relative -mt-2 h-3 w-3">
-            {[
-              {
-                size: 'h-2 w-2',
-                tone: 'bg-white/45',
-                delay: '0s',
-                drift: '-6px'
-              },
-              {
-                size: 'h-2.5 w-2.5',
-                tone: 'bg-white/35',
-                delay: '0.4s',
-                drift: '5px'
-              },
-              {
-                size: 'h-3 w-3',
-                tone: 'bg-white/25',
-                delay: '0.8s',
-                drift: '-3px'
-              },
-              {
-                size: 'h-2.5 w-2.5',
-                tone: 'bg-white/30',
-                delay: '1.2s',
-                drift: '7px'
-              }
-            ].map((puff) => (
+            {smokePuffs.map((puff) => (
               <span
                 key={puff.delay}
                 className={`animate-smoke absolute left-1/2 top-0 -translate-x-1/2 rounded-full blur-[1px] ${puff.size} ${puff.tone}`}
