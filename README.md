@@ -1,6 +1,6 @@
-# Cristopher Lopez — Portfolio
+# Cristopher Lopez · Portfolio
 
-My personal site: [im.ramclen.xyz](http://im.ramclen.xyz/)
+My personal site: [im.ramclen.xyz](https://im.ramclen.xyz/)
 
 A single-page portfolio set on Mars. The sky follows your system theme (dusty
 daytime or a starry night), a couple of astronauts wander around the surface
@@ -12,7 +12,7 @@ All of the motion is plain CSS; JavaScript only decides _where_ things are.
 - React 18 + TypeScript
 - Vite
 - Tailwind CSS v4
-- Deployed to GitHub Pages with a custom domain
+- GitHub Pages, deployed by GitHub Actions; DNS on Cloudflare
 - [Umami](https://umami.is/) for privacy-friendly visitor counts
 
 ## Getting started
@@ -26,23 +26,28 @@ The dev server runs on http://localhost:5173.
 
 ## Scripts
 
-| Command           | What it does                                       |
-| ----------------- | -------------------------------------------------- |
-| `npm run dev`     | Start the dev server                               |
-| `npm run build`   | Production build into `dist/`                      |
-| `npm run preview` | Serve the production build locally                 |
-| `npm run lint`    | Run ESLint                                         |
-| `npm run deploy`  | Build and publish `dist/` to the `gh-pages` branch |
+| Command             | What it does                       |
+| ------------------- | ---------------------------------- |
+| `npm run dev`       | Start the dev server               |
+| `npm run build`     | Production build into `dist/`      |
+| `npm run preview`   | Serve the production build locally |
+| `npm run lint`      | Run ESLint                         |
+| `npm run typecheck` | Type-check with `tsc`              |
+| `npm run format`    | Format everything with Prettier    |
 
 ## Project layout
 
 ```
 src/
   components/
-    common/     # Navbar, footer and the Mars scene (sky, ground, astronauts, rocket)
+    common/     # Navbar, footer, logo and the Mars scene (sky, ground, astronauts, rocket)
+    projects/   # Artwork for the GitHub project cards
     sections/   # One component per page section
   contexts/     # Theme provider (follows prefers-color-scheme)
+  data/         # projects.json and its schema
   hooks/        # useWander: moves the astronauts and rover around
+  lib/          # Small helpers
+  pages/        # Home and the 404 page
   styles/       # Tailwind theme, keyframes and custom utilities
 ```
 
@@ -73,10 +78,13 @@ a console warning in dev instead of breaking the page.
 
 ## Deploying
 
-`npm run deploy` publishes to the `gh-pages` branch. The `public/CNAME` file
-keeps the custom domain set on every deploy, so the only one-off setup is
-pointing a `CNAME` DNS record for `im` at `<your-github-user>.github.io` and
-enabling GitHub Pages for the `gh-pages` branch in the repo settings.
+Every push to `main` runs [the deploy workflow](.github/workflows/deploy.yml):
+it lints, type-checks, builds and publishes `dist/` to GitHub Pages. Nothing to
+run by hand.
+
+The custom domain `im.ramclen.xyz` is set in the repo's Pages settings and
+points at GitHub through a `CNAME` record on Cloudflare (DNS only, grey cloud),
+which lets GitHub issue the HTTPS certificate.
 
 ## Accessibility
 

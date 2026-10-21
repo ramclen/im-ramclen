@@ -2,14 +2,14 @@
   "name": "cristopher-lopez-portfolio",
   "version": "1.0.0",
   "type": "module",
-  "homepage": "http://im.ramclen.xyz/",
+  "homepage": "https://im.ramclen.xyz/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -31,7 +31,6 @@
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "gh-pages": "^6.1.1",
     "globals": "^17.6.0",
     "prettier": "^3.9.10",
     "tailwindcss": "^4.3.0",
