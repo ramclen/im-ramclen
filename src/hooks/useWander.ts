@@ -8,12 +8,16 @@ type WanderOptions = {
   pause?: [number, number]
 }
 
+const DEFAULT_PAUSE: [number, number] = [1800, 6000]
+
 // Moves the node horizontally and exposes its state as data attributes
 // (data-moving / data-facing) so the walk cycle itself lives in CSS.
 export const useWander = (
   ref: RefObject<HTMLElement | null>,
-  { min, max, start, speed = 4, pause = [1800, 6000] }: WanderOptions
+  { min, max, start, speed = 4, pause = DEFAULT_PAUSE }: WanderOptions
 ) => {
+  const [pauseMin, pauseMax] = pause
+
   useEffect(() => {
     const node = ref.current
     if (!node) return
@@ -41,7 +45,7 @@ export const useWander = (
       if (time > pauseUntil) {
         const diff = target - pos
         if (Math.abs(diff) < 0.6) {
-          pauseUntil = time + pause[0] + Math.random() * (pause[1] - pause[0])
+          pauseUntil = time + pauseMin + Math.random() * (pauseMax - pauseMin)
           target = min + Math.random() * (max - min)
         } else {
           moving = true
@@ -63,5 +67,5 @@ export const useWander = (
 
     frameId = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frameId)
-  }, [ref, min, max, start, speed, pause])
+  }, [ref, min, max, start, speed, pauseMin, pauseMax])
 }
